@@ -1,7 +1,7 @@
 version: '3'
 services:
   httpd:
-    build: ./docker/httpd/
+    build: .
     image: my/httpd2.4
     container_name: 'httpd'
     ports:
