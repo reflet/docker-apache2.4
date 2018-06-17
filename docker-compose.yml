@@ -1,0 +1,19 @@
+version: '3'
+services:
+  httpd:
+    build: ./docker/httpd/
+    image: my/httpd2.4
+    container_name: 'httpd'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - app-data:/var/www/
+      - ./virtualhost:/usr/local/apache2/conf.d/virtualhost/
+
+volumes:
+  app-data:
+    driver_opts:
+      type: none
+      device: ${PWD}/www/
+      o: bind
