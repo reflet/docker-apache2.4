@@ -6,6 +6,7 @@ ARG GROUP="www-data"
 ARG GID="1000"
 ARG DOCUMENT_DIR="/var/www/"
 ARG WORKSPACE="/usr/local/apache2/"
+ARG PHP_PORT=9000
 
 # system update
 RUN apt-get -y update
@@ -41,7 +42,7 @@ RUN mkdir -p /usr/local/apache2/conf.d/virtualhost/ && \
       echo 'DirectoryIndex index.php index.html'; \
       echo '<FilesMatch \.php$>'; \
       echo '    CGIPassAuth On'; \
-      echo '    SetHandler "proxy:fcgi://php:9000"'; \
+      echo "    SetHandler 'proxy:fcgi://php:$PHP_PORT'"; \
       echo '</FilesMatch>'; \
       echo ''; \
       echo '# Default Virtualhost Configuration'; \
